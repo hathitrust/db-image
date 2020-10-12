@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  mariadb:
+    build: .
+    restart: always
+    
