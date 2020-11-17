@@ -248,7 +248,8 @@ CREATE TABLE `sources` (
   `id` tinyint(3) unsigned NOT NULL,
   `name` varchar(16) NOT NULL,
   `dscr` text NOT NULL,
-  `access_profile` tinyint(3) unsigned DEFAULT NULL
+  `access_profile` tinyint(3) unsigned DEFAULT NULL,
+  `digitization_source` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
