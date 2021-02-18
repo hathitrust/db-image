@@ -58,6 +58,16 @@ CREATE TABLE `ht_approval_requests` (
   `token_hash` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `ht_billing_members` (
+  `inst_id` varchar(32) DEFAULT NULL,
+  `parent_inst_id` varchar(32) DEFAULT NULL,
+  `weight` decimal(4,2) DEFAULT NULL,
+  `oclc_sym` varchar(10) DEFAULT NULL,
+  `marc21_sym` varchar(10) DEFAULT NULL,
+  `country_code` char(2) NOT NULL DEFAULT 'us',
+  `status` smallint(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 DROP TABLE IF EXISTS `ht_collection_digitizers`;
 CREATE TABLE `ht_collection_digitizers` (
@@ -109,7 +119,8 @@ CREATE TABLE `ht_institutions` (
   `allowed_affiliations` text,
   `shib_authncontext_class` varchar(255) DEFAULT NULL,
   `emergency_status` text,
-  `emergency_contact` varchar(255) DEFAULT NULL
+  `emergency_contact` varchar(255) DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
