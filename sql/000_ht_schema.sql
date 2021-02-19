@@ -21,7 +21,6 @@ CREATE TABLE `access_stmts` (
   `stmt_icon_aux` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 DROP TABLE IF EXISTS `access_stmts_map`;
 CREATE TABLE `access_stmts_map` (
   `a_attr` varchar(32) NOT NULL,
@@ -120,7 +119,7 @@ CREATE TABLE `ht_institutions` (
   `shib_authncontext_class` varchar(255) DEFAULT NULL,
   `emergency_status` text,
   `emergency_contact` varchar(255) DEFAULT NULL,
-  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
