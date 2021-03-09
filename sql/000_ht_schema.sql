@@ -99,21 +99,15 @@ CREATE TABLE `ht_counts` (
 
 DROP TABLE IF EXISTS `ht_institutions`;
 CREATE TABLE `ht_institutions` (
-  `sdrinst` varchar(32) NOT NULL,
   `inst_id` varchar(64) DEFAULT NULL,
   `grin_instance` varchar(8) DEFAULT NULL,
   `name` varchar(256) NOT NULL,
   `template` varchar(256) NOT NULL,
-  `authtype` varchar(32) NOT NULL,
   `domain` varchar(32) NOT NULL,
   `us` tinyint(1) NOT NULL,
-  `mapto_domain` varchar(32) DEFAULT NULL,
-  `mapto_sdrinst` varchar(32) DEFAULT NULL,
   `mapto_inst_id` varchar(32) DEFAULT NULL,
   `mapto_name` varchar(256) DEFAULT NULL,
-  `mapto_entityID` varchar(256) DEFAULT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `orph_agree` tinyint(1) NOT NULL,
   `entityID` varchar(256) DEFAULT NULL,
   `allowed_affiliations` text,
   `shib_authncontext_class` varchar(255) DEFAULT NULL,
