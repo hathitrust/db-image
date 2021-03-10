@@ -57,16 +57,17 @@ CREATE TABLE `ht_approval_requests` (
   `token_hash` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `ht_billing_members`;
 CREATE TABLE `ht_billing_members` (
-  `inst_id` varchar(32) DEFAULT NULL,
+  `inst_id` varchar(32) NOT NULL,
   `parent_inst_id` varchar(32) DEFAULT NULL,
-  `weight` decimal(4,2) DEFAULT NULL,
+  `weight` decimal(4,2) NOT NULL DEFAULT '0.00',
   `oclc_sym` varchar(10) DEFAULT NULL,
   `marc21_sym` varchar(10) DEFAULT NULL,
   `country_code` char(2) NOT NULL DEFAULT 'us',
-  `status` smallint(6) DEFAULT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`inst_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 DROP TABLE IF EXISTS `ht_collection_digitizers`;
 CREATE TABLE `ht_collection_digitizers` (
@@ -141,6 +142,12 @@ CREATE TABLE `ht_user_logs` (
   `data` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `ht_institution_logs`;
+CREATE TABLE `ht_institution_logs` (
+  `inst_id` varchar(255) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `data` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `ht_users`;
 CREATE TABLE `ht_users` (
