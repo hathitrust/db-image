@@ -48,13 +48,14 @@ CREATE TABLE `collection_names` (
 
 DROP TABLE IF EXISTS `ht_approval_requests`;
 CREATE TABLE `ht_approval_requests` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `approver` varchar(255) DEFAULT NULL,
   `userid` varchar(255) DEFAULT NULL,
   `sent` timestamp NULL DEFAULT NULL,
   `received` timestamp NULL DEFAULT NULL,
   `renewed` timestamp NULL DEFAULT NULL,
-  `token_hash` varchar(255) DEFAULT NULL
+  `token_hash` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `ht_billing_members`;
