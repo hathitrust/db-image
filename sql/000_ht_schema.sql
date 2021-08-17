@@ -150,6 +150,23 @@ CREATE TABLE `ht_institution_logs` (
   `data` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `ht_contacts`;
+CREATE TABLE `ht_contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `inst_id` varchar(64) NOT NULL,
+  `contact_type` int(11) NOT NULL,
+  `email` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `ht_contact_types`;
+CREATE TABLE `ht_contact_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 DROP TABLE IF EXISTS `ht_users`;
 CREATE TABLE `ht_users` (
   `userid` varchar(256) NOT NULL,
