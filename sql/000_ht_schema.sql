@@ -135,17 +135,10 @@ CREATE TABLE `ht_proxies` (
   `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-DROP TABLE IF EXISTS `ht_user_logs`;
-CREATE TABLE `ht_user_logs` (
-  `userid` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `data` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS `ht_institution_logs`;
-CREATE TABLE `ht_institution_logs` (
-  `inst_id` varchar(255) DEFAULT NULL,
+DROP TABLE IF EXISTS `ht_logs`;
+CREATE TABLE `ht_logs` (
+  `model` varchar(255) DEFAULT NULL,
+  `objid` varchar(255) DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `data` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
