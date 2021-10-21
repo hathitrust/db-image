@@ -38,23 +38,10 @@ CREATE TABLE `attributes` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=28;
 
-
 DROP TABLE IF EXISTS `collection_names`;
 CREATE TABLE `collection_names` (
   `collection` varchar(16) NOT NULL,
   `coalesce(mapto_name,name)` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `ht_approval_requests`;
-CREATE TABLE `ht_approval_requests` (
-  `id` int(11) NOT NULL,
-  `approver` varchar(255) DEFAULT NULL,
-  `userid` varchar(255) DEFAULT NULL,
-  `sent` timestamp NULL DEFAULT NULL,
-  `received` timestamp NULL DEFAULT NULL,
-  `renewed` timestamp NULL DEFAULT NULL,
-  `token_hash` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `ht_billing_members`;
@@ -134,21 +121,6 @@ CREATE TABLE `ht_proxies` (
   `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-DROP TABLE IF EXISTS `ht_user_logs`;
-CREATE TABLE `ht_user_logs` (
-  `userid` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `data` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS `ht_institution_logs`;
-CREATE TABLE `ht_institution_logs` (
-  `inst_id` varchar(255) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `data` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 DROP TABLE IF EXISTS `ht_users`;
 CREATE TABLE `ht_users` (
   `userid` varchar(256) NOT NULL,
@@ -167,13 +139,11 @@ CREATE TABLE `ht_users` (
   `identity_provider` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 DROP TABLE IF EXISTS `ht_sessions`;
 CREATE TABLE `ht_sessions` (
   `id` varchar(32) NOT NULL,
   `a_session` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 DROP TABLE IF EXISTS `mb_coll_item`;
 CREATE TABLE `mb_coll_item` (
