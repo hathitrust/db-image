@@ -175,7 +175,8 @@ CREATE TABLE `ht_users` (
   `expire_type` varchar(32) DEFAULT NULL,
   `iprestrict` varchar(1024) DEFAULT NULL,
   `mfa` tinyint(1) DEFAULT NULL,
-  `identity_provider` varchar(255) DEFAULT NULL
+  `identity_provider` varchar(255) DEFAULT NULL,
+  `inst_id` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
