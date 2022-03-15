@@ -29,7 +29,7 @@ INSERT INTO `ht_collections` VALUES ('IUCLA','universityofcalifornia','universit
 INSERT INTO `ht_collections` VALUES ('IUFL','flbog','flbog','flbog','flbog');
 INSERT INTO `ht_collections` VALUES ('IUIUC','illinois','illinois','illinois','illinois');
 INSERT INTO `ht_collections` VALUES ('IUNC','unc','unc','unc','unc');
-INSERT INTO `ht_collections` VALUES ('KEIO','keio','hathitrust','keio','hathitrust');
+INSERT INTO `ht_collections` VALUES ('KEIO','keio','keio','keio','keio');
 INSERT INTO `ht_collections` VALUES ('LEBAU','aub','aub','aub','aub');
 INSERT INTO `ht_collections` VALUES ('MDBJ','jhu','jhu','jhu','jhu');
 INSERT INTO `ht_collections` VALUES ('MDL','mndigital','umn','mndigital','umn');
@@ -59,6 +59,7 @@ INSERT INTO `ht_collections` VALUES ('PUR','purdue','purdue','purdue','purdue');
 INSERT INTO `ht_collections` VALUES ('QMM','mcgill','mcgill','mcgill','mcgill');
 INSERT INTO `ht_collections` VALUES ('SCU','sc','sc','sc','sc');
 INSERT INTO `ht_collections` VALUES ('SRLF','universityofcalifornia','universityofcalifornia','universityofcalifornia','ucla');
+INSERT INTO `ht_collections` VALUES ('TU','utk','utk','utk','utk');
 INSERT INTO `ht_collections` VALUES ('TXCM','tamu','tamu','tamu','tamu');
 INSERT INTO `ht_collections` VALUES ('TXSMTSU','txstate','txstate','txstate','txstate');
 INSERT INTO `ht_collections` VALUES ('TXU','utexas','utexas','utexas','utexas');
