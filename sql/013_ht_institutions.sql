@@ -162,7 +162,7 @@ INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VAL
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('ptsem', 'Princeton Theological Seminary', '', 'ptsem.edu', 1, 1);
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('pugetsound', 'University of Puget Sound', '', 'pugetsound.edu', 1, 1);
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('purdue', 'Purdue University', '', 'purdue.edu', 1, 1);
-INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('queensu', 'Queen's University', '', 'queensu.ca', 0, 1);
+INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('queensu', "Queen's University", '', 'queensu.ca', 0, 1);
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('reed', 'Reed College', '', 'reed.edu', 1, 1);
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('richmond', 'University of Richmond', '', 'richmond.edu', 1, 1);
 INSERT INTO `ht_institutions` (inst_id, name, template, domain, us, enabled) VALUES ('rochester', 'University of Rochester', '', 'rochester.edu', 1, 1);
