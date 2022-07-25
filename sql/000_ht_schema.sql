@@ -238,33 +238,36 @@ CREATE TABLE `reasons` (
 
 DROP TABLE IF EXISTS `rights_current`;
 CREATE TABLE `rights_current` (
-	  `namespace` varchar(8) NOT NULL,
-	  `id` varchar(32) NOT NULL DEFAULT '',
-	  `attr` tinyint(4) NOT NULL,
-	  `reason` tinyint(4) NOT NULL,
-	  `source` tinyint(4) NOT NULL,
-	  `access_profile` tinyint(4) NOT NULL,
-	  `user` varchar(32) NOT NULL DEFAULT '',
-	  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	  `note` text,
-	  PRIMARY KEY (`namespace`,`id`),
-	  KEY `time` (`time`),
-	  KEY `rights_current_attr_index` (`attr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `namespace` varchar(8) NOT NULL,
+  `id` varchar(32) NOT NULL DEFAULT '',
+  `attr` tinyint(4) NOT NULL,
+  `reason` tinyint(4) NOT NULL,
+  `source` tinyint(4) NOT NULL,
+  `access_profile` tinyint(4) NOT NULL,
+  `user` varchar(32) NOT NULL DEFAULT '',
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `note` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`namespace`,`id`),
+  KEY `time` (`time`),
+  KEY `rights_current_attr_index` (`attr`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `rights_log`;
 CREATE TABLE `rights_log` (
   `namespace` varchar(8) NOT NULL,
-  `id` varchar(32) NOT NULL,
+  `id` varchar(32) NOT NULL DEFAULT '',
   `attr` tinyint(4) NOT NULL,
   `reason` tinyint(4) NOT NULL,
   `source` tinyint(4) NOT NULL,
   `access_profile` tinyint(4) NOT NULL,
-  `user` varchar(32) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `note` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user` varchar(32) NOT NULL DEFAULT '',
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `note` mediumtext DEFAULT NULL,
+  PRIMARY KEY (`namespace`,`id`,`time`),
+  KEY `time` (`time`),
+  KEY `attr` (`attr`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `sources`;
