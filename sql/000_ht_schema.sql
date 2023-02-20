@@ -98,6 +98,31 @@ CREATE TABLE `ht_counts` (
   `auth_requested` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `pt_exclusivity_ng`;
+CREATE TABLE `pt_exclusivity_ng` (
+  `lock_id` varchar(32) NOT NULL,
+  `item_id` varchar(32) NOT NULL DEFAULT '',
+  `owner` varchar(256) NOT NULL DEFAULT '',
+  `affiliation` varchar(128) NOT NULL DEFAULT '',
+  `expires` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `renewals` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`lock_id`,`owner`,`affiliation`),
+  KEY `lock_check` (`lock_id`,`affiliation`),
+  KEY `excess_check` (`lock_id`,`affiliation`,`expires`),
+  KEY `pt_exclusivity_ng_expires` (`expires`),
+  KEY `pt_exclusivity_ng_item_id` (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
+
+DROP TABLE IF EXISTS `ht_survey`;
+CREATE TABLE `ht_survey` (
+  `MColl_ID` int(10) unsigned NOT NULL DEFAULT 0,
+  `effective_date` date DEFAULT NULL,
+  `expires_date` date DEFAULT NULL,
+  `description` varchar(1024) DEFAULT NULL,
+  KEY `MColl_ID` (`MColl_ID`),
+  KEY `effective_date` (`effective_date`),
+  KEY `expires_date` (`expires_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `ht_institutions`;
 CREATE TABLE `ht_institutions` (
@@ -226,6 +251,19 @@ CREATE TABLE `mb_item` (
   `sort_author` varchar(1024) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `mb_transfer` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `token` varchar(36) NOT NULL DEFAULT '',
+  `submitter` varchar(255) NOT NULL DEFAULT '',
+  `submitter_usernames` text NOT NULL DEFAULT '[]',
+  `receiver` varchar(255) DEFAULT NULL,
+  `payload` text DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `completed` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `token` (`token`),
+  KEY `submitter` (`submitter`)
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4;
 
 DROP TABLE IF EXISTS `reasons`;
 CREATE TABLE `reasons` (
