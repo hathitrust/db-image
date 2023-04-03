@@ -318,5 +318,32 @@ CREATE TABLE `sources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `oclc_concordance`;
+CREATE TABLE `oclc_concordance` (
+  `oclc` int(10) unsigned NOT NULL,
+  `canonical` int(10) unsigned DEFAULT NULL,
+  KEY `oclc_c_oclc` (`oclc`),
+  KEY `oclc_c_canon` (`canonical`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+DROP TABLE IF EXISTS `holdings_htitem_htmember`;
+CREATE TABLE `holdings_htitem_htmember` (
+  `lock_id` varchar(300) NOT NULL,
+  `cluster_id` varchar(25) NOT NULL,
+  `volume_id` varchar(50) NOT NULL,
+  `n_enum` varchar(250) DEFAULT '',
+  `member_id` varchar(20) NOT NULL,
+  `copy_count` int(11) DEFAULT NULL,
+  `lm_count` smallint(6) DEFAULT NULL,
+  `wd_count` smallint(6) DEFAULT NULL,
+  `brt_count` smallint(6) DEFAULT NULL,
+  `access_count` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`volume_id`,`member_id`),
+  KEY `member_id` (`member_id`),
+  KEY `cluster_id` (`cluster_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
 GRANT SELECT ON `ht`.* TO 'mdp-lib'@'%' IDENTIFIED BY 'mdp-lib';
 GRANT ALL ON `ht`.* TO 'mdp-admin'@'%' IDENTIFIED BY 'mdp-admin';
