@@ -126,7 +126,7 @@ CREATE TABLE `ht_survey` (
 
 DROP TABLE IF EXISTS `ht_institutions`;
 CREATE TABLE `ht_institutions` (
-  `inst_id` varchar(64) DEFAULT NULL,
+  `inst_id` varchar(64) PRIMARY KEY NOT NULL,
   `grin_instance` varchar(8) DEFAULT NULL,
   `name` varchar(256) DEFAULT NULL,
   `template` varchar(256) DEFAULT NULL,
