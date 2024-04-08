@@ -3,7 +3,7 @@ name: Build
 on:
     workflow_run:
         workflows: ['Run Tests']
-        branches: ['main']
+        branches: ['master']
         types: [completed]
 
     workflow_dispatch:
@@ -12,7 +12,7 @@ on:
                 description: Docker Image Tag
             ref:
                 description: Revision or Branch to build
-                default: main
+                default: master
             push_latest:
                 description: Set True if the build is for the latest version
                 type: boolean
