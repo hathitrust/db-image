@@ -320,9 +320,9 @@ CREATE TABLE `sources` (
 
 DROP TABLE IF EXISTS `oclc_concordance`;
 CREATE TABLE `oclc_concordance` (
-  `oclc` int(10) unsigned NOT NULL,
+  `variant` int(10) unsigned NOT NULL,
   `canonical` int(10) unsigned DEFAULT NULL,
-  KEY `oclc_c_oclc` (`oclc`),
+  KEY `oclc_c_var` (`variant`),
   KEY `oclc_c_canon` (`canonical`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
