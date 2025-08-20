@@ -1,0 +1,101 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "dotenv"
+require "logger"
+require "open3"
+require "sequel"
+require "tempfile"
+
+$LOAD_PATH.unshift File.expand_path(File.join(__dir__, "..", "lib"))
+
+require "schema"
+
+# These tools will be used primarily on sidecar
+# to produce a new set of sql dumps.
+
+Dotenv.load "config/env"
+
+HOME = File.expand_path(File.join(__dir__, ".."))
+OUTPUT_DIRECTORY = File.join(HOME, "dump")
+FileUtils.mkdir_p OUTPUT_DIRECTORY
+LOGGER = Logger.new($stdout)
+
+schema = HathiTrust::DatabaseSchema.new
+
+def dump_table(database:, table:, with_data: false)
+  output_file = File.join(OUTPUT_DIRECTORY, "#{table}.sql")
+  Tempfile.create(["defaults_extra", ".ini"]) do |ini|
+    ini.write(defaults_extra_file)
+    ini.flush
+    cmd = dump_cmd(database: database, table: table, ini_file: ini.path, output_file: output_file, with_data: with_data)
+    LOGGER.info cmd
+    #res = system(cmd, exception: true)
+    out, err, status = Open3.capture3(cmd)
+    if !status.success?
+      raise "error #{status.exitstatus} dumping #{table}: #{err}"
+    end
+    out = "use `ht`;\n" + out
+    File.open(output_file, "w") do |file|
+      file.write out
+    end
+  end
+end
+
+def dump_cmd(database:, table:, ini_file:, output_file:, with_data: false)
+  # gsub to collapse newlines and multiple space into one line
+  <<~END_CMD.gsub(/\s+/, " ")
+    mariadb-dump
+    --defaults-extra-file=#{ini_file}
+    --host=#{ENV["MARIADB_HT_RO_HOST"]}
+    #{with_data ? "" : "--no-data"}
+    --single-transaction
+    --skip-comments
+    --skip-extended-insert
+    #{database}
+    #{table}
+  END_CMD
+end
+
+# The expected INI format provided to --defaults-extra-file=...
+def defaults_extra_file
+  <<~END_INI
+    [client]
+    user="#{ENV["MARIADB_HT_RO_USERNAME"]}"
+    password="#{ENV["MARIADB_HT_RO_PASSWORD"]}"
+  END_INI
+end
+
+def round_to_magnitude(x)
+  x.round(-(x.to_s.length - 1))
+end
+
+#dump_table(:attributes)
+#puts "ht table\tsource database\tapprox row count"
+
+
+
+# HathiTrust::DatabaseSchema::HT_TABLES.each do |table|
+#   next unless table.start_with? "feed"
+#   src = schema.ht_table_source table
+#   #count = db.table_exists?(table) ? round_to_magnitude(db[table].count) : 0
+#   count_source = src.any? ? src.first : "ht"
+#   count = schema.count_rows(database: count_source, table: table)
+#   count = if count.nil?
+#     "unknown"
+#   else
+#     round_to_magnitude count    
+#   end
+#   puts "#{table}\t#{src.first}\t#{count}"
+# end
+# 
+# exit 0
+
+HathiTrust::DatabaseSchema::HT_TABLES.each do |table|
+  next unless table.start_with? "feed"
+  src = schema.ht_table_source(table).first.to_s
+  puts "dump_table #{src}.#{table}"
+  dump_table database: src, table: table
+end
+

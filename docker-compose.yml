@@ -1,7 +1,42 @@
 ---
 
+x-condition-healthy: &healthy
+  condition: service_healthy
+
+x-healthcheck-defaults: &healthcheck-defaults
+  interval: 5s
+  timeout: 10s
+  start_period: 10s
+  retries: 5
+
 services:
   mariadb:
-    build: .
-    restart: always
+    image: mariadb:10.5
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    healthcheck:
+      <<: *healthcheck-defaults
+      test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
     
+  dev:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/usr/src/app
+      - gem_cache:/gems
+    environment: &holdings-default-environment
+      MARIADB_HT_RW_HOST: mariadb
+      MARIADB_HT_RW_USERNAME: root
+      MARIADB_HT_RW_PASSWORD: mdp-lib
+      MARIADB_HT_RW_DATABASE: mdp-lib
+    depends_on:
+      mariadb: *healthy
+    command: sleep infinity
+
+volumes:
+  gem_cache:
+  db_data:

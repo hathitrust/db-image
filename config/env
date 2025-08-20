@@ -1,0 +1,5 @@
+# These defaults work for testing locally under Docker
+MARIADB_HT_RO_USERNAME=root
+MARIADB_HT_RO_PASSWORD=root
+MARIADB_HT_RO_HOST=mariadb
+MARIADB_HT_RO_DATABASE=ht
