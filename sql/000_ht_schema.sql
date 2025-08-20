@@ -129,7 +129,6 @@ CREATE TABLE `ht_institutions` (
   `inst_id` varchar(64) PRIMARY KEY NOT NULL,
   `grin_instance` varchar(8) DEFAULT NULL,
   `name` varchar(256) DEFAULT NULL,
-  `template` varchar(256) DEFAULT NULL,
   `domain` varchar(32) DEFAULT NULL,
   `us` tinyint(1) NOT NULL DEFAULT 0,
   `mapto_inst_id` varchar(32) DEFAULT NULL,
