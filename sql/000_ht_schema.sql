@@ -154,13 +154,6 @@ CREATE TABLE `ht_namespaces` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `ht_proxies`;
-CREATE TABLE `ht_proxies` (
-  `host` varchar(64) NOT NULL,
-  `ip` varchar(16) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 DROP TABLE IF EXISTS `ht_logs`;
 CREATE TABLE `ht_logs` (
   `model` varchar(255) DEFAULT NULL,
