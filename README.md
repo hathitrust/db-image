@@ -1,6 +1,6 @@
 ## db-image
 
-Docker image with MariaDB and HathiTrust database for testing.
+Docker image with MariaDB and HathiTrust database for testing and local development.
 
 Note: the `mdp-lib` credentials (at the end of `sql/000_ht_schema.sql`)
 should be used wherever possible. The `mdp-admin` account has write
