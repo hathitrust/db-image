@@ -67,7 +67,7 @@ connection[:ht_institutions].order(Sequel.asc(:inst_id)).each do |inst|
     inst[:inst_id] || "",
     inst[:name] || "",
     inst[:domain] || "",
-    inst[:us] ? 1 : 0,
+    inst[:us],
     inst[:enabled]
   ]
   line += values.map do |val|
