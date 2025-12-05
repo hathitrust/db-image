@@ -58,7 +58,6 @@ def quote(str)
   end
 end
 
-
 connection = HathiTrust::Database.new.connection
 
 puts PREAMBLE
@@ -69,9 +68,8 @@ connection[:ht_institutions].order(Sequel.asc(:inst_id)).each do |inst|
     inst[:name] || "",
     inst[:domain] || "",
     inst[:us] ? 1 : 0,
-    inst[:enabled] ? 1 : 0
+    inst[:enabled]
   ]
-  #puts values.map {|val| "'" + val.to_s + "'"}
   line += values.map do |val|
     if val.is_a?(Integer)
       val

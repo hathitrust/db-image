@@ -31,7 +31,11 @@ module HathiTrust
         host: ENV["MARIADB_HT_RO_HOST"],
         database: ENV["MARIADB_HT_RO_DATABASE"],
         encoding: "utf8mb4"
-      )
+      ).tap do |db|
+        # Messes up ht_institutions.enabled so disable it. We are more interested in
+        # extracting and preserving raw data from our databases so it makes sense given our use case.
+        db.convert_tinyint_to_bool = false
+      end
     end
   end
 end
