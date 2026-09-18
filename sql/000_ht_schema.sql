@@ -87,15 +87,15 @@ CREATE TABLE `ht_collections` (
   `billing_entity` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 DROP TABLE IF EXISTS `ht_counts`;
 CREATE TABLE `ht_counts` (
-  `userid` varchar(256) NOT NULL,
-  `accesscount` int(11) NOT NULL,
-  `last_access` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `warned` tinyint(1) NOT NULL,
-  `certified` tinyint(1) NOT NULL,
-  `auth_requested` tinyint(1) NOT NULL
+  `userid` varchar(256) NOT NULL DEFAULT '',
+  `accesscount` int(11) NOT NULL DEFAULT 0,
+  `last_access` timestamp /* mariadb-5.3 */ NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `warned` tinyint(1) NOT NULL DEFAULT 0,
+  `certified` tinyint(1) NOT NULL DEFAULT 0,
+  `auth_requested` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `pt_exclusivity_ng`;
